@@ -54,7 +54,7 @@ function attrColor(ctx, r, g, b, a, modo){
 		
 }
 
-function attrClip(xx, yy, w, h, ctx){
+function attrClip(ctx, xx, yy, w, h){
 	
 	x = xx;
 	y= yy;
@@ -99,33 +99,7 @@ function IniVerifClip(x1, y1, x2, y2){
 	return verifica;	
 }
 
-/*function IniVerifClip2(x1, y1, x2, y2){	
-	
-	inicioX = x + x1;
-	inicioY = y + y1;
-	fimX = x + x2;
-	fimY = y + y2;
-	var verifica = true;
-	
-	if(fimX > tamanhoX+x)
-		fimX = tamanhoX+x;
-		
-	if(fimY > tamanhoY+y)
-		fimY = tamanhoY+y;
-		
-	if(inicioX > tamanhoX+x)
-		inicioX = tamanhoX+x;
-		
-	if(inicioY > tamanhoY+y)
-		inicioY = tamanhoY+y;
-		
-	if(inicioX >= tamanhoX+x || fimX >tamanhoX+x || inicioY >= tamanhoY+y  fimY >= tamanhoY+y){
-		verifica = false;
-		
-		
-	return verifica;
-			
-}*/
+
 
 
 //ok		
@@ -151,10 +125,37 @@ function drawLine(ctx, x1, y1, x2, y2){
 		
 }
 
+function IniVerifClip2(x1, y1, x2, y2){
+	inicioX = x + x1;
+	inicioY = y + y1;
+	fimX = x2;
+	fimY = y2;
+	var verifica = true;
+	var sub= 0;
+	
+	if(inicioX+fimX > x+tamanhoX){
+		sub = (inicioX+fimX) - (x+tamanhoX);
+		fimX = fimX-sub;	
+	}
+	
+	if(inicioY+fimY > y+tamanhoY){
+		sub = (inicioY+fimY) - (y+tamanhoY);
+		fimY = fimY-sub;	
+	}
+		
+	
+	if(inicioX >= tamanhoX+x || inicioY >= tamanhoY+y){
+		verifica = false;
+	}
+	
+	return verifica;
+	
+}
+
 //ok
 function drawRect(ctx, x1, y1, x2, y2, modo){
 	
-	var verifica = true;//IniVerifClip2(x1, y1, x2, y2);
+	var verifica = IniVerifClip2(x1,y1,x2,y2);
 	
 	
 	
