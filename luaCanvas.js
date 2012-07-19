@@ -13,8 +13,8 @@ var fimY = 0;
 function createContext(id, w, h) {
     var canvas = document.createElement('canvas');
     canvas.id = id;
-    canvas.width = w;
-    canvas.height = h;
+    tamanhoX = fimX = canvas.width = w;
+    tamanhoY = fimY = canvas.height = h;
     canvas.setAttribute('style', 'border: black 1px solid');
     ctx = canvas.getContext("2d");
     
@@ -25,24 +25,6 @@ function createContext(id, w, h) {
 	return ctx;  
 	       
 }
-
-
-
-
-function attrClip(xx, yy, w, h, ctx){
-	
-	x = xx;
-	y= yy;
-	tamanhoX = w;
-	tamanhoY = h; 
-	
-	
-	ctx.lineWidth = "1";
-	ctx.strokeRect(x,y,tamanhoX,tamanhoY);
-   
-	
-}    
-
 
 //ok
 function attrSize(id){
@@ -72,6 +54,20 @@ function attrColor(ctx, r, g, b, a, modo){
 		
 }
 
+function attrClip(xx, yy, w, h, ctx){
+	
+	x = xx;
+	y= yy;
+	tamanhoX = w;
+	tamanhoY = h; 
+	
+	
+	ctx.lineWidth = "1";
+	ctx.strokeRect(x,y,tamanhoX,tamanhoY);
+   
+	
+}    
+
 //verifica se o tamanho solicitado eh superior ao permitido no clip
 function IniVerifClip(x1, y1, x2, y2){	
 	
@@ -81,13 +77,21 @@ function IniVerifClip(x1, y1, x2, y2){
 	fimY = y + y2;
 	var verifica = true;
 	
-	if(fimX > tamanhoX)
+	
+	
+	if(fimX > tamanhoX+x)
 		fimX = tamanhoX+x;
 		
-	if(fimY > tamanhoY)
+	if(fimY > tamanhoY+y)
 		fimY = tamanhoY+y;
 		
-	if(inicioX > tamanhoX-2 || inicioY > tamanhoY-2){
+	if(inicioX > tamanhoX+x)
+		inicioX = tamanhoX+x;
+		
+	if(inicioY > tamanhoY+y)
+		inicioY = tamanhoY+y;
+		
+	if(inicioX >= tamanhoX+x && fimX >tamanhoX+x || inicioY >= tamanhoY+y && fimY >= tamanhoY+y){
 		verifica = false;
 		
 	}
@@ -95,7 +99,7 @@ function IniVerifClip(x1, y1, x2, y2){
 	return verifica;	
 }
 
-function IniVerifClip2(x1, y1, x2, y2){	
+/*function IniVerifClip2(x1, y1, x2, y2){	
 	
 	inicioX = x + x1;
 	inicioY = y + y1;
@@ -103,22 +107,25 @@ function IniVerifClip2(x1, y1, x2, y2){
 	fimY = y + y2;
 	var verifica = true;
 	
-	if(inicioX > tamanhoX-2 || inicioY > tamanhoY-2){
+	if(fimX > tamanhoX+x)
+		fimX = tamanhoX+x;
+		
+	if(fimY > tamanhoY+y)
+		fimY = tamanhoY+y;
+		
+	if(inicioX > tamanhoX+x)
+		inicioX = tamanhoX+x;
+		
+	if(inicioY > tamanhoY+y)
+		inicioY = tamanhoY+y;
+		
+	if(inicioX >= tamanhoX+x || fimX >tamanhoX+x || inicioY >= tamanhoY+y  fimY >= tamanhoY+y){
 		verifica = false;
 		
-	}
-		
-		
-	
-	if(fimX > tamanhoX)
-		fimX = tamanhoX+x-inicioX;
-		
-	if(fimY > tamanhoY)
-		fimY = tamanhoY+y-inicioY;
 		
 	return verifica;
 			
-}
+}*/
 
 
 //ok		
@@ -147,7 +154,7 @@ function drawLine(ctx, x1, y1, x2, y2){
 //ok
 function drawRect(ctx, x1, y1, x2, y2, modo){
 	
-	var verifica = IniVerifClip2(x1, y1, x2, y2);
+	var verifica = true;//IniVerifClip2(x1, y1, x2, y2);
 	
 	
 	
