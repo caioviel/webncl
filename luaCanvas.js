@@ -27,14 +27,14 @@ function createContext(id, w, h) {
 }
 
 //ok
-function attrSize(id){
+function attrSize(ctx){
 	
 	var canvas = document.getElementById(id);
 	
 	var dimensao = new Array();
 	
-	dimensao[0] = canvas.width;
-	dimensao[1] = canvas.height;
+	dimensao[0] = ctx.canvas.width;
+	dimensao[1] = ctx.canvas.height;
 	
 	return dimensao;
 	
@@ -99,32 +99,6 @@ function IniVerifClip(x1, y1, x2, y2){
 	return verifica;	
 }
 
-
-
-
-//ok		
-function drawLine(ctx, x1, y1, x2, y2){
-	
-	
-	
-	var verifica = IniVerifClip(x1, y1, x2, y2);
-	
-	if(verifica){
-		ctx.beginPath();
-		ctx.moveTo(inicioX,inicioY);
-		ctx.lineTo(fimX,fimY);
-						
-		ctx.stroke(); 
-	}
-	
-	else{
-		alert("Coordenadas fora da area selecionada para desenho")
-	}
-	
-	
-		
-}
-
 function IniVerifClip2(x1, y1, x2, y2){
 	inicioX = x + x1;
 	inicioY = y + y1;
@@ -151,6 +125,40 @@ function IniVerifClip2(x1, y1, x2, y2){
 	return verifica;
 	
 }
+
+
+function attrCrop(ctxFonte, ctxDestino, x, y, w, h){
+	
+	canvasData = ctxFonte.getImageData(x, y, w, h);
+	
+	ctxDestino.putImageData(canvasData, 0, 0);
+}
+
+
+//ok		
+function drawLine(ctx, x1, y1, x2, y2){
+	
+	
+	
+	var verifica = IniVerifClip(x1, y1, x2, y2);
+	
+	if(verifica){
+		ctx.beginPath();
+		ctx.moveTo(inicioX,inicioY);
+		ctx.lineTo(fimX,fimY);
+						
+		ctx.stroke(); 
+	}
+	
+	else{
+		alert("Coordenadas fora da area selecionada para desenho")
+	}
+	
+	
+		
+}
+
+
 
 //ok
 function drawRect(ctx, x1, y1, x2, y2, modo){
@@ -225,6 +233,14 @@ function image_path(caminho){
 	ctx.drawImage(img, 10,10);
 	
 }
+
+function compose(ctxFonte, ctxDestino){
+	
+	canvasData = ctxFonte.getImageData(0, 0, ctxFonte.canvas.width, ctxFonte.canvas.height);
+	
+	ctxDestino.putImageData(canvasData, 0, 0);
+}
+
 
 function flush(ctx){
 	
