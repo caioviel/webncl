@@ -117,10 +117,12 @@ libCanvas.prototype.drawLine =  function(x1, y1, x2, y2){
 		ctx.lineTo(this.fimX,this.fimY);
 						
 		ctx.stroke(); 
+		ctx.save();
+		
 	}
 	
 	else{
-		alert("Coordenadas fora da area selecionada para desenho")
+		console.log("Coordinates out of area selected to draw")
 	}
 		
 }
@@ -139,13 +141,13 @@ libCanvas.prototype.drawRect =  function(x1, y1, x2, y2, modo){
 		}
 		
 		else{
-			alert("modo não existe - Escolha fill ou frame");
+			console.log("mode doesn't exists - Please choise 'fill' or 'frame'");
 			
 		}
 	}
 	
 	else{
-		alert("Coordenadas fora da area selecionada para desenho")
+		console.log("Coordinates out of area selected to draw")
 	}
 			
 }
@@ -166,7 +168,7 @@ libCanvas.prototype.drawText =  function(xx, yy, text){
 	this.inicioY = this.y+yy+altura;
 	
 	if(this.inicioX+largura > this.x+this.tamanhoX || this.inicioY+altura > this.y+this.tamanhoY)
-		alert("Texto excede as dimensoes limitadas do canvas");
+		console.log("Text exceeds the dimentions limited by canvas");
 	else
 		ctx.fillText(text,this.inicioX,this.inicioY);
 	 
@@ -190,7 +192,8 @@ libCanvas.prototype.image_path = function(caminho,x,y,w,h){
 	img.src = caminho;
 	
 	if(this.inicioX+w > this.x+this.tamanhoX || this.inicioY+h > this.y+this.tamanhoY)
-		alert("Texto excede as dimensoes limitadas do canvas");
+		
+		console.log("Image exceeds the dimentions limited by canvas");
 	else
 		ctx.drawImage(img, this.inicioX,this.inicioY,w,h);
 	
@@ -200,7 +203,7 @@ libCanvas.prototype.attrCrop = function(ctxDestino, x, y, w, h){
 	
 	canvasData = ctx.getImageData(x, y, w, h);
 	
-	ctxDestino.putImageData(canvasData, 0, 0);
+	ctxDestino.putImageData(canvasData, x, y);
 }
 
 
@@ -212,8 +215,13 @@ libCanvas.prototype.compose = function(ctxDestino){
 	ctxDestino.putImageData(canvasData, 0, 0);
 }
 
+libCanvas.prototype.salva = function(){
+	
+	ctx.save();
+}
+
 libCanvas.prototype.flush = function(){
 	
-	
+	ctx.restore();
 	
 }
