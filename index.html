@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+  <meta charset="utf-8" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>teste</title>
+  <meta name="description" content="" />
+  <meta name="author" content="Alessander" />
+
+  <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+  <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script type="application/javascript" src="libCanvas.js" ></script>
+ 
+  
+</head>
+
+<body>
+  <div>
+    <header>
+    	
+  
+      <h1>Testing...</h1>
+    </header>
+    <nav>
+      <p><a href="/">Home</a></p>
+      <p><a href="/contact">Contact</a></p>
+    </nav>
+
+    <div>
+    	<canvas width="500" height="500" id="mycanvas">
+    		
+    	</canvas>
+    	<canvas width="500" height="500" id="mycanvas2">
+    		 
+    	</canvas>
+		<script type="application/javascript">
+			var canvas = document.getElementById("mycanvas");
+			canvas.setAttribute('style', 'border: black 1px solid');
+			ctx = canvas.getContext("2d");
+			
+			var canvas2 = document.getElementById("mycanvas2");
+			canvas2.setAttribute('style', 'border: green 1px solid');
+			ctx2 = canvas2.getContext("2d");
+			
+			var x = new libCanvas(ctx);
+			var y = new libCanvas(ctx2);
+			
+			
+			x.attrColor(125,0,250,0.8,"frame");
+			x.attrClip(125,125,250,250);	
+			x.drawLine(0,0,50,50);
+			x.attrColor(125,125,0,0.8,"fill");
+			x.drawRect(50,50,100,100,"fill");
+			x.attrCrop(ctx2,0,0,300,300);
+			x.image_path("recruta.jpg",200,200,50,50);
+			x.flush();
+			
+			
+			
+			
+		</script>
+		
+   
+    	
+    	
+    </div>
+    
+    <div>
+    	
+    	
+    </div>
+    
+    
+    
+    <footer>
+     <p>&copy; Copyright  by Alessander</p>
+    </footer>
+  </div>
+</body>
+</html>

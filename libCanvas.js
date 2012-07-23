@@ -10,6 +10,7 @@ function libCanvas(ctx){
 	this.fimX = ctx.canvas.width;
 	this.fimY = ctx.canvas.height;
 	
+
 	
 };
 
@@ -180,13 +181,29 @@ libCanvas.prototype.measureTextLua =  function(text){
 	return {w:textWidth.width,h:height};	
 } 
 
-libCanvas.prototype.image_path = function(caminho,x,y){
+libCanvas.prototype.image_path = function(caminho,x,y,w,h){
 	
+	this.inicioX = this.x + x;
+	this.inicioY = this.y + y;
+		
 	var img = new Image();
 	img.src = caminho;
-	ctx.drawImage(img, x,y);
+	
+	if(this.inicioX+w > this.x+this.tamanhoX || this.inicioY+h > this.y+this.tamanhoY)
+		alert("Texto excede as dimensoes limitadas do canvas");
+	else
+		ctx.drawImage(img, this.inicioX,this.inicioY,w,h);
 	
 }
+
+libCanvas.prototype.attrCrop = function(ctxDestino, x, y, w, h){
+	
+	canvasData = ctx.getImageData(x, y, w, h);
+	
+	ctxDestino.putImageData(canvasData, 0, 0);
+}
+
+
 
 libCanvas.prototype.compose = function(ctxDestino){
 	
@@ -197,6 +214,6 @@ libCanvas.prototype.compose = function(ctxDestino){
 
 libCanvas.prototype.flush = function(){
 	
-	ctx.save();
+	
 	
 }
