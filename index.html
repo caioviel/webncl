@@ -18,6 +18,7 @@
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <script type="application/javascript" src="libCanvas.js" ></script>
+  <script type="application/javascript" src="libPersistent.js" ></script>
  
   
 </head>
@@ -34,44 +35,23 @@
       <p><a href="/contact">Contact</a></p>
     </nav>
 
-    <div>
-    	<canvas width="500" height="500" id="mycanvas">
-    		
-    	</canvas>
-    	<canvas width="500" height="500" id="mycanvas2">
-    		 
-    	</canvas>
+	<section>	
+			
+	</section>
+
+    
+    	
 		<script type="application/javascript">
-			var canvas = document.getElementById("mycanvas");
-			canvas.setAttribute('style', 'border: black 1px solid');
-			ctx = canvas.getContext("2d");
 			
-			var canvas2 = document.getElementById("mycanvas2");
-			canvas2.setAttribute('style', 'border: green 1px solid');
-			ctx2 = canvas2.getContext("2d");
-			
-			var x = new libCanvas(ctx);
-			var y = new libCanvas(ctx2);
-			
-			
-			x.attrColor(125,0,250,0.8,"frame");
-			x.attrClip(125,125,250,250);	
-			x.drawLine(0,0,50,50);
-			x.attrColor(125,125,0,0.8,"fill");
-			x.drawRect(50,50,100,100,"fill");
-			x.attrCrop(ctx2,0,0,300,300);
-			x.image_path("recruta.jpg",200,200,50,50);
-			x.flush();
-			
-			
-			
+		var x = new libPersistent("teste");
+		x.addField();
 			
 		</script>
 		
-   
+   		
     	
     	
-    </div>
+    
     
     <div>
     	
