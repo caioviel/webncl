@@ -2,6 +2,10 @@ function libPersistent(readOnly){
 	this.readOnly=readOnly;
 };
 
+libPersistent.prototype.changeMode = function(readOnly){
+	this.readOnly = readOnly;
+	
+}
 
 libPersistent.prototype.storeField = function(prefix, key, value){
 	
@@ -19,6 +23,7 @@ libPersistent.prototype.storeField = function(prefix, key, value){
 		}	
 	}
 }
+
 
 libPersistent.prototype.clear = function(){
 	
