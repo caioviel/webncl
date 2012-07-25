@@ -25,7 +25,7 @@ libCanvas.prototype.attrSize = function(){
 	
 }
 
-libCanvas.prototype.attrColor = function(r, g, b, a, modo){
+libCanvas.prototype.attrColor = function(r, g, b, a, mode){
 	
 	if(modo == "fill")
 		ctx.fillStyle = "rgba(" + r + ","+ g + "," + b + "," + a + ")";
@@ -127,7 +127,7 @@ libCanvas.prototype.drawLine =  function(x1, y1, x2, y2){
 		
 }
 
-libCanvas.prototype.drawRect =  function(x1, y1, x2, y2, modo){
+libCanvas.prototype.drawRect =  function(x1, y1, x2, y2, mode){
 	
 	var verifica = this.iniVerifClip2(x1,y1,x2,y2);
 		
@@ -199,7 +199,7 @@ libCanvas.prototype.image_path = function(caminho,x,y,w,h){
 	
 }
 
-libCanvas.prototype.attrCrop = function(ctxDestino, x, y, w, h){
+libCanvas.prototype.attrCrop = function(ctxDestiny, x, y, w, h){
 	
 	canvasData = ctx.getImageData(x, y, w, h);
 	
@@ -215,7 +215,7 @@ libCanvas.prototype.compose = function(ctxDestino){
 	ctxDestino.putImageData(canvasData, 0, 0);
 }
 
-libCanvas.prototype.salva = function(){
+libCanvas.prototype.save = function(){
 	
 	ctx.save();
 }
