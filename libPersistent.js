@@ -29,9 +29,7 @@ libPersistent.prototype.recoverField = function(key){
 	
 	key = "webncl." + key;
 	
-	var a = 18;
-	
 	var content = localStorage.getItem(key);
-	alert(content);
+	return content;
 	
 }
